@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { ModalController } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+ 
+import {StartUpModalPage} from '../pages/start-up-modal/start-up-modal';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,20 +14,18 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
-
+  authEmployeeId: string ;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public modalCtrl: ModalController) {
     this.initializeApp();
-
+      console.log("constructor myapp");
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
-
+      ]; 
   }
-
+    
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -34,6 +33,20 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  openModal() {
+    console.log("opening model for setup");
+    let myModal = this.modalCtrl.create(StartUpModalPage);
+    myModal.present();
+    return true;
+  }
+
+  logoutUser(){
+    window.localStorage.setItem('authEmployeeId', "");
+    alert("Logged out Successfully");
+    this.nav.setRoot(HomePage);
+    return true;
   }
 
   openPage(page) {
