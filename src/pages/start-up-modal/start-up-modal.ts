@@ -36,7 +36,7 @@ export class StartUpModalPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StartUpModalPage');
+   // console.log('ionViewDidLoad StartUpModalPage');
   
 
   }
@@ -49,21 +49,28 @@ export class StartUpModalPage {
     this.userInput.action_name = "new_session_start";
     this.userInput.action_details = " user Logged in at "+ new Date();
     this.userInput.user_type = "staff";
-    console.log(this.userInput);
+   // console.log(this.userInput);
     window.localStorage.setItem('authEmployeeId', this.userInput.user_id );
-    console.log("sveed valuee - "+window.localStorage.getItem('authEmployeeId') + "local calue"+this.userInput.user_id );
+    console.log("sveed valuee - "+ window.localStorage.getItem('authEmployeeId') + "local calue"+this.userInput.user_id );
     this.activityProvider.logUserActivity(this.userInput).subscribe(user => {this.user=user; 
-															  				 console.log(user);
+															  				// console.log(user);
 															  				 this.viewCtrl.dismiss();
 															  				 
 
 															  				}, error => {
-															  					console.log("error " + error);
+															  					//console.log("error " + error);
 															  				  this.viewCtrl.dismiss();
 															  				});
   }
   closeModal() {
-    this.viewCtrl.dismiss();
+   // console.log("closing modal");
+    if(window.localStorage.getItem('authEmployeeId') == null || window.localStorage.getItem('authEmployeeId')  == "" || window.localStorage.getItem('authEmployeeId')  == "undefined"){
+       
+    }
+    else{
+      this.viewCtrl.dismiss();
+      setTimeout(() => {window.location.reload();}, 500);
+    }
   }
 
 }

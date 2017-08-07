@@ -45,7 +45,9 @@ export class MyApp {
   logoutUser(){
     window.localStorage.setItem('authEmployeeId', "");
     alert("Logged out Successfully");
+
     this.nav.setRoot(HomePage);
+    setTimeout(() => {window.location.reload();}, 1000);
     return true;
   }
 

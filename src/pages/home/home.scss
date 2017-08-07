@@ -1,3 +1,90 @@
 page-home {
 
+ion-label {
+color: #B4886B;
+ 
+display: block;
+ 
+font-size: 19px;
+margin:auto;
+}
+
+.fitToScreen{
+	float:right;
+}
+
+.mapStyle{
+	
+	 height:56%;
+	 width:100%;
+	 margin:0;
+	 display:block;
+}
+
+.left-sided{
+	float:left;
+}
+
+.distance-text {
+			max-width:100%;
+			font-size:22px;
+			}
+
+.font-20{
+		font-size:20px;
+		}
+
+.width-100{
+	max-width:100%;
+	font-size:20px;
+}
+
+.custom-width-73{
+	max-width: 73%;
+}
+
+ion-item {
+	max-width: 75%;
+	float:right;
+	padding: 5px, 5px,4px,5px;
+}
+
+
+.button-styled{ 
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 18px;
+  font-family: Arial;
+  color: #e9f5f5;
+  font-size: 18px;
+  padding: 9px 10px 7px 13px;
+  text-decoration: none;
+  float: right;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.button-styled:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+
+
+
+
 }

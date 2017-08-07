@@ -1,19 +1,18 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar >
     <button ion-button menuToggle id="menuButtonId">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>CND Vehicle Locator </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div id="selectVehicle" id="showSelectVehicleDivId" *ngIf="!selectedVehicleStatus">
-    <ion-item>
-      <ion-label id="messageLableId">  Please select vehicle </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>  Zone</ion-label>
+      <ion-label id="messageLableId" text-wrap> To locate rover and find details <br>please select zone from the list </ion-label>
+       <button   class = "button-styled" style="float:left;" align="right" color="primary" *ngIf="vehicleSelected" id = "showSameVehicleDetailsButtonId" (click)="showVehicleData()" > Show </button>  <br>
+    <ion-item style="max-width: 73%;">
+      <ion-label  >  Zone</ion-label>
         <ion-select [(ngModel)]="zoneData" id="zoneListDropDownId" (ionChange)="openVehicleList()">
         <ion-option *ngFor="let zone of zoneList" value="{{zone.id}}">{{zone.name}}</ion-option>
       </ion-select>
@@ -27,33 +26,37 @@
 
       </ion-item>
  
-      <button ion-fab   align="right" color="primary" *ngIf="vehicleSelected" id = "showSameVehicleDetailsButtonId" (click)="showVehicleData()" > Show </button>  
+     
   </div>
-  <div id="showVehicle" *ngIf="selectedVehicleStatus" id="showVehicleDataMapId">
-         <button ion-fab mini id="selectVehicleButtonId" (click)="showSelectVehicle()"> Back</button>  
+  <div id="showVehicle"  *ngIf="selectedVehicleStatus" id="showVehicleDataMapId"><br>
+         <button class = "button-styled" id="selectVehicleButtonId" style="float:left;" (click)="showSelectVehicle()"> Back</button>  
           <ion-item  >
              <ion-label  id="selectedVehicleNameId"> Name  :  {{selectedVehicle.name}}</ion-label></ion-item>
              <ion-item  > <ion-label id="selectedVehicleModelId" > Model : {{selectedVehicle.model}} </ion-label></ion-item>
              <ion-item  > <ion-label  id="selectedVehiclePowerId"> Power Level : {{selectedVehicle.power_level_percent}} </ion-label> </ion-item>
-             <ion-item  >  <ion-label id="selectedVehicleDistanceId" > Distance From Command Center : {{selectedVehicle.distanceFromCommandCenter}} </ion-label> 
+             <ion-item  >  <ion-label id="selectedVehicleDistanceId" > Distance : {{selectedVehicle.distanceFromCommandCenter}} KM</ion-label> 
           </ion-item>
   </div>
-  <div id="map" style="height:65%; width:100% margin:0; display:block;" >
+  <div id="map" class="mapStyle" >
   </div>
 
-  <div id="inputCordinates" *ngIf="!selectedVehicleStatus">
-  <ion-label *ngIf="!customDistance" id="distanceLableId"> Enter Details to find Distance from Command Cecnter</ion-label>
-  <ion-label *ngIf="customDistance" id="customDistanceLableId"> Distance : {{customDistance}} </ion-label>
-   
- <button ion-button mini id= "resetButton" *ngIf="customDistance" (click)="resetDetails()"> Reset </button>  
+  <div id="inputCordinates" *ngIf="!selectedVehicleStatus" text-wrap >
+  <ion-label *ngIf="!customDistance" id="distanceLableId" text-wrap style="max-width:100%;font-size:22px;"> Find Distance from Command Center</ion-label>
 
-    <button ion-fab mini id= "caluclateDistanceButton" *ngIf="!customDistance" (click)="caluclateDistance()"> Find </button>  
+  <ion-label *ngIf="customDistance" id="customDistanceLableId" style="font-size:20px"> Distance : {{customDistance}} KM</ion-label>
+   
+ <button  id= "resetButton" class = "button-styled" *ngIf="customDistance" (click)="resetDetails()"> Reset </button>  
+
+ 
+    <ion-label  id=" " text-wrap style="max-width:100%;font-size:20px;"> Enter co-ordinates below</ion-label>
+     <button   id= "caluclateDistanceButton" class = "button-styled" *ngIf="!customDistance" (click)="caluclateDistance()"> Find </button>  
      <ion-item >
+     
             <ion-input [(ngModel)]="customLat"  id= "customLattitudeInput" type="text" placeholder="Lattitude" ></ion-input>
             <ion-input [(ngModel)]="customLong"  id="customeLongitudeInput" type="text" placeholder="Longitude" ></ion-input>
             
       </ion-item>
- 
+   
 
   </div>
   

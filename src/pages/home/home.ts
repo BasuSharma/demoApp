@@ -54,8 +54,8 @@ export class HomePage {
 
         // constants
            	apolloCenterName: string = "CND command center";
-            iconNasa: string = "https://www.nasa.gov/favicon.ico";
-			iconRover: string = "http://cdn.images.express.co.uk/img/page/icons/share/facebook.png";
+            iconNasa: string = "img/appolo_nasa.png";
+			iconRover: string = "img/rover.png";
 
 /** 
 constructor method to initialize variable values for futher use
@@ -67,7 +67,7 @@ constructor method to initialize variable values for futher use
   	this.zoneData = null;
   //	this.zoneList = [{id:"1", zoneName: "bright side of Moon"},{id: "2", zoneName:"dark side of Moon"}];
  locationInfoProvider.getZoneList({employeeId: "1121"}).subscribe(zoneList => {
- 	console.log(zoneList);
+ 	//console.log(zoneList);
  	this.zoneList = zoneList}, error => {console.log(error)});
  /*this.vehicleList =[{
 				vehicle_id: 0,
@@ -108,7 +108,7 @@ constructor method to initialize variable values for futher use
 				this.navCtrl.push(StartUpModalPage);
 			}
 
-		    console.log('Home page view loaded now loading map');
+		   //// console.log('Home page view loaded now loading map');
 		    this.initMap(this.locationInfoProvider.cndCommandCenterLocation );
 		    this.addMarker(this.locationInfoProvider.cndCommandCenterLocation, this.map, this.apolloCenterName, this.iconNasa  );
 		  }
@@ -121,10 +121,13 @@ constructor method to initialize variable values for futher use
   **/
   
 	openVehicleList() {
-		console.log(JSON.stringify(this.zoneData));
-		this.locationInfoProvider.getVehicleList({"zone_id":JSON.stringify(this.zoneData)}).subscribe(vehicleList => {
-			console.log("return vehicle List");
+		//console.log(JSON.stringify(this.zoneData));
+		this.locationInfoProvider.getVehicleList({zone_id:this.zoneData}).subscribe(vehicleList => {
+			//console.log("return vehicle List");
+			///console.log(vehicleList);
+
 			this.vehicleList = vehicleList;
+
 			if(this.vehicleList.length >0){
 				this.showVehicleList =true;
 			}
@@ -134,7 +137,7 @@ constructor method to initialize variable values for futher use
 
 
 		checkDataEmpty(data:any){
-			console.log("checking empty");
+			//console.log("checking empty");
 			if(data == "" || data == null || data == "undefined"){
 				return false;
 			}else{
@@ -149,7 +152,7 @@ constructor method to initialize variable values for futher use
   **/
 
 		showVehicleData(){
-			 console.log("entering showVehicleData : selected vehicle " + this.vehicleSelected);
+			// console.log("entering showVehicleData : selected vehicle " + this.vehicleSelected);
 
 			 	let flag  = this.checkDataEmpty(this.vehicleSelected);
 			 	if(!flag){
@@ -157,7 +160,7 @@ constructor method to initialize variable values for futher use
 			 			}
 
 			 	//get current location fo vehicle through providers
-				this.locationInfoProvider.getVehicleLocation(JSON.stringify(this.vehicleSelected))
+				this.locationInfoProvider.getVehicleLocation(this.vehicleSelected)
 						.subscribe(vehicleData => {this.selectedVehicle = <Vehicle>vehicleData;
  					console.log("lat long of selected vehicle - " + this.selectedVehicle.lat + 
  						"vehicle long" + this.selectedVehicle.long);
@@ -189,7 +192,7 @@ constructor method to initialize variable values for futher use
 		
 		// function to hide/ show vehicle options on the basis of user selection			   
 	    showSelectVehicle() {
-	    	console.log("hide vehicle select");
+	    	//console.log("hide vehicle select");
 	    	this.selectedVehicleStatus= false;
 	    }
       /** function name - caluclateDistance
@@ -273,7 +276,7 @@ constructor method to initialize variable values for futher use
           getTileUrl: (coord: google.maps.Point, zoom:number) => {
               var normalizedCoord = this.getNormalizedCoord(coord, zoom);
 
-              console.log("normalized cord "+ JSON.stringify(normalizedCoord));
+              //console.log("normalized cord "+ JSON.stringify(normalizedCoord));
               if (!normalizedCoord) {
                 return null;
               }
@@ -299,7 +302,7 @@ constructor method to initialize variable values for futher use
 			output:  initialzes a marker on map  
 			 **/	 
      addMarker(location:Location, map:google.maps.Map, name:string, icon:string){
-   			console.log("adding markers");
+//console.log("adding markers");
         // Add the marker at the clicked location, and add the next-available label
         // from the array of alphabetical characters.
         
